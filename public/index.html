@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f5f7" />
+    <meta name="description" content="Gestiona los leads de tu mini CRM." />
+    <title>Mini CRM</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-header">
+        <p class="eyebrow">ESPACIO DE TRABAJO</p>
+        <h1>Mini CRM<span>.</span></h1>
+        <p class="subtitle">Una forma sencilla de mantener tus contactos cerca.</p>
+      </header>
+
+      <section class="panel form-panel" aria-labelledby="form-title">
+        <div class="section-heading">
+          <div>
+            <p id="form-eyebrow" class="eyebrow">NUEVO LEAD</p>
+            <h2 id="form-title">Añade un contacto</h2>
+          </div>
+          <span class="heading-mark" aria-hidden="true">＋ Añadir Lead</span>
+        </div>
+
+        <form id="lead-form" class="lead-form">
+          <label class="field">
+            <span>Nombre</span>
+            <input id="name" name="name" type="text" placeholder="Ej. Alex García" autocomplete="name" required />
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input id="email" name="email" type="email" placeholder="alex@ejemplo.com" autocomplete="email" required />
+          </label>
+          <label class="field">
+            <span>Fuente</span>
+            <input id="source" name="source" type="text" placeholder="Ej. Web, referido" />
+          </label>
+          <label class="field">
+            <span>Estado</span>
+            <select id="status" name="status">
+              <option value="nuevo">Nuevo</option>
+              <option value="contactado">Contactado</option>
+              <option value="perdido">Perdido</option>
+            </select>
+          </label>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">
+              <span>Añadir lead</span>
+              <span aria-hidden="true">→</span>
+            </button>
+            <button id="cancel-edit" class="page-button cancel-button" type="button" hidden>Cancelar</button>
+          </div>
+        </form>
+        <p id="form-message" class="message" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel leads-panel" aria-labelledby="leads-title">
+        <div class="section-heading leads-heading">
+          <div>
+            <p class="eyebrow">TU LISTA</p>
+            <h2 id="leads-title">Leads</h2>
+          </div>
+          <div class="heading-actions">
+            <span id="lead-count" class="count-pill">0 contactos</span>
+            <a class="page-button export-button" href="/leads/export.csv" download>Descargar CSV</a>
+          </div>
+        </div>
+
+        <div class="lead-filters" role="search" aria-label="Filtrar leads">
+          <label class="filter-field">
+            <span>Buscar</span>
+            <input id="lead-search" type="search" placeholder="Nombre o email" autocomplete="off" />
+          </label>
+          <label class="filter-field filter-status">
+            <span>Estado</span>
+            <select id="status-filter">
+              <option value="todos">Todos</option>
+              <option value="nuevo">Nuevo</option>
+              <option value="contactado">Contactado</option>
+              <option value="perdido">Perdido</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>
+                <th scope="col">Fuente</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="leads-body">
+              <tr class="empty-row"><td colspan="5">Cargando contactos…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <nav id="pagination" class="pagination" aria-label="Paginación de leads" hidden>
+          <button id="previous-page" class="page-button" type="button" aria-label="Página anterior">← Anterior</button>
+          <span id="page-status" class="page-status" aria-live="polite"></span>
+          <button id="next-page" class="page-button" type="button" aria-label="Página siguiente">Siguiente →</button>
+        </nav>
+      </section>
+      <footer class="page-footer">Hecho para mantener las cosas simples.</footer>
+    </main>
+  </body>
+</html>
