@@ -35,6 +35,7 @@ button, input, select { font: inherit; }
 }
 
 .page-header { margin: 0 0 36px 8px; }
+.deployment-note { margin: 0 0 20px; color: var(--muted); font-size: 12px; }
 .eyebrow { margin: 0 0 9px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; }
 h1 { margin: 0; font-size: clamp(42px, 7vw, 62px); font-weight: 700; letter-spacing: -0.065em; line-height: 1.02; }
 h1 span { color: #a1a1a6; }
