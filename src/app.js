@@ -28,11 +28,13 @@ app.get("/leads", (req, res) => {
 app.get("/leads/export.csv", (req, res) => {
   try {
     const columns = ["name", "email", "source", "status", "created_at"];
+    const delimiter = ";";
     const escapeCsvValue = (value) => `"${String(value ?? "").replaceAll('"', '""')}"`;
     const rows = loadLeadsForExport();
     const csv = [
-      columns.join(","),
-      ...rows.map((lead) => columns.map((column) => escapeCsvValue(lead[column])).join(",")),
+      `sep=${delimiter}`,
+      columns.join(delimiter),
+      ...rows.map((lead) => columns.map((column) => escapeCsvValue(lead[column])).join(delimiter)),
     ].join("\r\n");
 
     res.setHeader("Content-Type", "text/csv; charset=utf-8");
