@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: mini-crm-codex
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node src/server.js
